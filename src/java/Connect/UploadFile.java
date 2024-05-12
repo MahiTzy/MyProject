@@ -59,11 +59,15 @@ public class UploadFile extends HttpServlet {
         }
         String file = filePart.getSubmittedFileName();
         InputStream fileData = filePart.getInputStream();
-        File newFile = new File(request.getRealPath("/uploadimage"), file);
+        File uploadDir = new File(request.getRealPath("/uploadimage"));
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
+        File newFile = new File(uploadDir, file);
         if (!newFile.exists()) {
             Files.copy(fileData, newFile.toPath());
         }
-        
+
         session.setAttribute("profile", file);
         DbManager db = new DbManager();
         String query = "update login set profile='" + file + "' where userid='" + id + "'";

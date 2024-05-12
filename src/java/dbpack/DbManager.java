@@ -15,7 +15,7 @@ public class DbManager {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("mysql://isbc2taclic5th83:ddrhl8rggzbp74ht@i943okdfa47xqzpy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/upq1cmnbwlabn917?characterEncoding=utf-8","isbc2taclic5th83","ddrhl8rggzbp74ht");
+            con=DriverManager.getConnection("jdbc:mysql://i943okdfa47xqzpy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/upq1cmnbwlabn917","isbc2taclic5th83","ddrhl8rggzbp74ht");
         }
         catch(ClassNotFoundException e1)
         {
