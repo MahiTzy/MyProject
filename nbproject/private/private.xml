@@ -4,11 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/components/header.jsp</file>
-            <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/components/footer.jsp</file>
             <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/index.jsp</file>
-            <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/controllers/logoutHandler.jsp</file>
+            <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/assets/js/script.js</file>
             <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/components/signUpModal.jsp</file>
-            <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/studentZone/profile.jsp</file>
+            <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/components/loginModal.jsp</file>
             <file>file:/C:/Users/91982/Documents/NetBeansProjects/MyProject/web/controllers/loginHandler.jsp</file>
         </group>
     </open-files>

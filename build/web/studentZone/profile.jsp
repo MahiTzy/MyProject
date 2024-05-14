@@ -17,9 +17,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Student Dashboard</title>
+        <title>Student | Profile</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="../assets/css/style.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 
     </head>
@@ -76,125 +77,122 @@
                     <div class="pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">View & Manage your Profie here</h1>
                     </div>
-                    <table class="table table-striped table-bordered">
-                        <div class="container-xl px-4 mt-4">
-                            <div class="row">
-                                <div class="col-xl-4">
-                                    <!--Profile picture card-->
-                                    <div class="card mb-4 mb-xl-0">
-                                        <div class="card-header">Profile Picture</div>
-                                        <div class="card-body text-center">
-                                            <form id="uploadForm" action="../UploadFile?id=${rollno}" method="post" enctype="multipart/form-data">
-                                                <!--Hidden input for file upload--> 
-                                                <input type="file" id="profilePictureFile" name="profilePictureFile" accept="image/*" style="display: none;">
-                                                <!--Profile picture image-->
-                                                <%
-                                                    String id = session.getAttribute("rollno").toString();
-                                                    DbManager dm = new DbManager();
-                                                    ResultSet rs = dm.select("select * from login where userid='" + id + "'");
-                                                    if (rs.next()) {
-                                                %>
-                                                <% String profilePicturePath = rs.getString("profile");%>
-                                                <label for="profilePictureFile">
-                                                    <%if (profilePicturePath != null && profilePicturePath != "") {%>
-                                                    <img class="img-account-profile rounded-circle mb-2" id="profilePictureImg" src="<%=request.getContextPath()%>/uploadimage/<%=profilePicturePath%>" height="300px" width="300px" style="cursor: pointer" alt="">
-                                                    <% } else { %>
-                                                    <img class="img-account-profile rounded-circle mb-2" id="profilePictureImg" src="../assets/img/placeholder.jpg" height="300px" width="300px" style="cursor: pointer" alt="">
-                                                    <% } %>
-                                                </label>
-                                                <%  }%>
-                                                <!--Profile picture help block-->
-                                                <div class="small font-italic text-muted mb-4">Click on image to change Profile Picture</div>
-                                                <!--Profile picture upload button-->
-                                                <input type="submit" class="btn btn-primary" value="Upload Picture">
-                                                <div class="small font-italic text-muted mt-2">JPG or PNG no larger than 5 MB</div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <% if (session.getAttribute("error") != null) {%>
-                                    <div style="color: red;">
-                                        <%= session.getAttribute("error")%>
-                                    </div>
-                                    <% session.removeAttribute("error"); %>
-                                    <% } %>
-                                </div>
-                                <div class="col-xl-8">
-                                    <!--Account details card-->
-                                    <div class="card mb-4">
-                                        <div class="card-header">Account Details</div>
-                                        <div class="card-body">
-                                            <form action='updateInfo.jsp?id=${rollno}' method='post'>
-                                                <%
-                                                    ResultSet rs1 = dm.select("select * from studentinfo where rollno='" + id + "'");
-                                                    if (rs1.next()) {
-                                                %>
-                                                <!--Form Group (username)-->
-                                                <div class="mb-3">
-                                                    <label class="small mb-1" for="inputUsername">Your name</label>
-                                                    <input class="form-control" name='name' id="inputUsername" type="text" value="<%=rs1.getString("name")%>">
-                                                </div>
-                                                <!--Form Row-->
-                                                <div class="row gx-3 mb-3">
-                                                    <!--Form Group (first name)-->
-                                                    <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputFirstName">Father's name</label>
-                                                        <input class="form-control" name='fname' id="inputFirstName" type="text" value="<%=rs1.getString("fname")%>">
-                                                    </div>
-                                                    <!--Form Group (last name)-->
-                                                    <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputLastName">Mother's name</label>
-                                                        <input class="form-control" name='mname' id="inputLastName" type="text" value="<%=rs1.getString("mname")%>">
-                                                    </div>
-                                                </div>
-                                                <!--Form Row-->
-                                                <div class="row gx-3 mb-3">
-                                                    <!--Form Group (birthday)-->
-                                                    <div class="col-md-4">
-                                                        <label class="small mb-1" for="inputBirthday">Program</label>
-                                                        <input class="form-control" id="inputBirthday" name='program' type="text" value="<%=rs1.getString("program")%>" readonly>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label class="small mb-1" for="inputBirthday">Branch</label>
-                                                        <input class="form-control" id="inputBirthday" type="text" name="branch" value="<%=rs1.getString("branch")%>" readonly>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label class="small mb-1" for="inputBirthday">Year</label>
-                                                        <input class="form-control" id="inputBirthday" type="text" name="year" value="<%=rs1.getString("year")%>" readonly>
-                                                    </div>
-                                                </div>
-                                                <!--Form Row-->        
-                                                <div class="row gx-3 mb-3">
-                                                    <!--Form Group (organization name)-->
-                                                    <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputOrgName">Address</label>
-                                                        <input class="form-control" id="inputOrgName" name='address' type="text" value="<%=rs1.getString("address")%>">
-                                                    </div>
-                                                    <!--Form Group (location)-->
-                                                    <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputLocation">Contact no.</label>
-                                                        <input class="form-control" id="inputLocation" type="text" name='contactno' value="<%=rs1.getString("contactno")%>">
-                                                    </div>
-                                                </div>
-                                                <!--Form Group (email address)-->
-                                                <div class="mb-3 row gx-3">
-                                                    <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputPhone">Gender</label>
-                                                        <input class="form-control" id="inputPhone" name='gender' type="tel" value="<%=rs1.getString("gender")%>" readonly>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                        <input class="form-control" id="inputEmailAddress" name='email' type="email" value="<%=rs1.getString("emailaddress")%>">
-                                                    </div>
-                                                </div>
+                    <div class="container-xl px-4 mt-4">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <!--Profile picture card-->
+                                <div class="card mb-4 mb-xl-0">
+                                    <div class="card-header">Profile Picture</div>
+                                    <div class="card-body text-center">
+                                        <form id="uploadForm" action="../UploadFile?id=${rollno}" method="post" enctype="multipart/form-data">
+                                            <input type="file" id="profilePictureFile" name="profilePictureFile" accept="image/*" style="display: none;">
+                                            <%
+                                                String id = session.getAttribute("rollno").toString();
+                                                DbManager dm = new DbManager();
+                                                ResultSet rs = dm.select("select * from login where userid='" + id + "'");
+                                                if (rs.next()) {
+                                            %>
+                                            <% String profilePicturePath = rs.getString("profile");%>
+                                            <label for="profilePictureFile">
+                                                <%if (profilePicturePath != null && profilePicturePath != "") {%>
+                                                <img class="img-account-profile rounded-circle mb-2" id="profilePictureImg" src="<%=request.getContextPath()%>/uploadimage/<%=profilePicturePath%>" height="300px" width="300px" style="cursor: pointer" alt="">
+                                                <% } else { %>
+                                                <img class="img-account-profile rounded-circle mb-2" id="profilePictureImg" src="../assets/img/placeholder.jpg" height="300px" width="300px" style="cursor: pointer" alt="">
                                                 <% } %>
+                                            </label>
+                                            <%  }%>
+                                            <!--Profile picture help block-->
+                                            <div class="small font-italic text-muted mb-4">Click on image to change Profile Picture</div>
+                                            <!--Profile picture upload button-->
+                                            <input type="submit" class="btn btn-primary" value="Upload Picture">
+                                            <div class="small font-italic text-muted mt-2">JPG or PNG no larger than 5 MB</div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <% if (session.getAttribute("error") != null) {%>
+                                <div style="color: red;">
+                                    <%= session.getAttribute("error")%>
+                                </div>
+                                <% session.removeAttribute("error"); %>
+                                <% } %>
+                            </div>
+                            <div class="col-xl-8">
+                                <!--Account details card-->
+                                <div class="card mb-4">
+                                    <div class="card-header">Account Details</div>
+                                    <div class="card-body">
+                                        <form action='updateInfo.jsp?id=${rollno}' method='post'>
+                                            <%
+                                                ResultSet rs1 = dm.select("select * from studentinfo where rollno='" + id + "'");
+                                                if (rs1.next()) {
+                                            %>
+                                            <!--Form Group (username)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputUsername">Your name</label>
+                                                <input class="form-control" name='name' id="inputUsername" type="text" value="<%=rs1.getString("name")%>">
+                                            </div>
+                                            <!--Form Row-->
+                                            <div class="row gx-3 mb-3">
+                                                <!--Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputFirstName">Father's name</label>
+                                                    <input class="form-control" name='fname' id="inputFirstName" type="text" value="<%=rs1.getString("fname")%>">
+                                                </div>
+                                                <!--Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputLastName">Mother's name</label>
+                                                    <input class="form-control" name='mname' id="inputLastName" type="text" value="<%=rs1.getString("mname")%>">
+                                                </div>
+                                            </div>
+                                            <!--Form Row-->
+                                            <div class="row gx-3 mb-3">
+                                                <!--Form Group (birthday)-->
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputBirthday">Program</label>
+                                                    <input class="form-control" id="inputBirthday" name='program' type="text" value="<%=rs1.getString("program")%>" readonly>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputBirthday">Branch</label>
+                                                    <input class="form-control" id="inputBirthday" type="text" name="branch" value="<%=rs1.getString("branch")%>" readonly>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputBirthday">Year</label>
+                                                    <input class="form-control" id="inputBirthday" type="text" name="year" value="<%=rs1.getString("year")%>" readonly>
+                                                </div>
+                                            </div>
+                                            <!--Form Row-->        
+                                            <div class="row gx-3 mb-3">
+                                                <!--Form Group (organization name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputOrgName">Address</label>
+                                                    <input class="form-control" id="inputOrgName" name='address' type="text" value="<%=rs1.getString("address")%>">
+                                                </div>
+                                                <!--Form Group (location)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputLocation">Contact no.</label>
+                                                    <input class="form-control" id="inputLocation" type="text" name='contactno' value="<%=rs1.getString("contactno")%>">
+                                                </div>
+                                            </div>
+                                            <!--Form Group (email address)-->
+                                            <div class="mb-3 row gx-3">
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputPhone">Gender</label>
+                                                    <input class="form-control" id="inputPhone" name='gender' type="tel" value="<%=rs1.getString("gender")%>" readonly>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                                    <input class="form-control" id="inputEmailAddress" name='email' type="email" value="<%=rs1.getString("emailaddress")%>">
+                                                </div>
+                                            </div>
+                                            <% } %>
 
-                                                <button class="btn btn-primary" type="submit">Save changes</button>
-                                            </form>
-                                        </div>
+                                            <button class="btn btn-primary" type="submit">Save changes</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </main>
             </div>
         </div>

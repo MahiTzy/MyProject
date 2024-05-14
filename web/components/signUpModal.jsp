@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="controllers/signupHandler.jsp" method="post">
+                <form action="controllers/signupHandler.jsp" method="post" onsubmit="return validateSignUpForm()">
                     <div class="mb-3 d-flex" style="gap: 10px">
                         <input type="number" name="rollno" class="form-control" placeholder="Enter roll no." required/>
                         <input type="text" name="name" class="form-control" id="name" placeholder="Enter full name" required>
@@ -19,20 +19,20 @@
                         <input type="text" name="address" class="form-control" id="address" placeholder="Enter address" required>
                     </div>
                     <div class="mb-3 d-flex" style="gap: 10px">
-                        <select name="program" class="form-control" style="font-size: 15px" required>
+                        <select name="program" class="form-control" style="font-size: 15px">
                             <option selected>-Select Program-</option>
                             <option value="B.Tech.">B.Tech.</option>
                             <option value="M.Tech.">M.Tech.</option>
                             <option value="Diploma">Diploma</option>
                         </select>
-                        <select name="branch" class="form-control" style="font-size: 15px" required>
+                        <select name="branch" class="form-control" style="font-size: 15px">
                             <option selected>-Select Branch-</option>
                             <option value="CS">CS</option>
                             <option value="IT">IT</option>
                             <option value="EC">EC</option>
                             <option value="EE">EE</option>
                         </select>
-                        <select name="year" class="form-control" style="font-size: 15px" required>
+                        <select name="year" class="form-control" style="font-size: 15px">
                             <option selected>-Select Year-</option>
                             <option value="First Year">First Year</option>
                             <option value="Second Year">Second Year</option>

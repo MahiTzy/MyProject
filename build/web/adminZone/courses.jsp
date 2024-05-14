@@ -21,6 +21,7 @@
         <title>Admin Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="../assets/css/style.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     </head>
     <body>

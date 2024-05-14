@@ -1,4 +1,4 @@
-<%--<%@page import="Connect.SmsSender"%>--%>
+<%@page import="Connect.SmsSender"%>
 <%@page import="dbpack.DbManager"%>
 <%
     String name = request.getParameter("name");
@@ -10,8 +10,8 @@
     String query = "insert into enquiry(name, address,contactno, emailaddress, enquirytext,enquirydate) values('" + name + "','" + address + "','" + contactno + "','" + emailaddress + "','" + enquirytext + "',curdate())";
     boolean res = dm.insertUpdateDelete(query);
     if (res == true) {
-//        SmsSender ss = new SmsSender();
-//        ss.sendSms(contactno);
+       SmsSender ss = new SmsSender();
+       ss.sendSms(contactno);
         out.print("<script>alert('Enquiry is submitted');window.location.href='../index.jsp';</script>");
     } else {
         out.print("<script>alert('Enquiry is not submitted');window.location.href='../index.jsp';</script>");

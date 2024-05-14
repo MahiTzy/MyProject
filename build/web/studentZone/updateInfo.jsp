@@ -17,8 +17,11 @@
     String email = request.getParameter("email");
     DbManager ctx = new DbManager();
     String query = "update studentinfo set name='" + name + "',fname='" + fname + "',mname='" + mname + "',gender='" + gender + "',address='" + address + "',contactno='" + cno + "',program='" + program + "',branch='" + branch + "',year='" + year + "',emailaddress='" + email + "' where rollno='" + id + "'";
+    String query1 = "update login set name='" + name + "' where userid='" + id + "'";
     boolean temp = ctx.insertUpdateDelete(query);
-    if (temp) {
-        out.print("<script>alert('Success');window.location.href='profile.jsp';</script>");
+    boolean temp1 = ctx.insertUpdateDelete(query1);
+    if (temp && temp1) {
+        session.invalidate();
+        out.print("<script>alert('Updated Successfully!');window.location.href='../index.jsp';</script>");
     }
 %>

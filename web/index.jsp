@@ -12,13 +12,105 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <!--<link rel="stylesheet" href="assets/css/style.css">-->
         <link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet" />
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Home | OES</title>
+        <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+        <title>Home | NOU Exam-Portal</title>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+        <script>
+            function validateContactForm() {
+                var name = document.getElementById('name-1').value;
+                var contactNo = document.getElementById('contactno-1').value;
+                var email = document.getElementById('email-1').value;
+                var address = document.getElementById('subject-1').value;
+                var message = document.getElementById('message-1').value;
+
+                var nameError = document.getElementById('nameError');
+                var contactError = document.getElementById('contactError');
+                var emailError = document.getElementById('emailError');
+                var addressError = document.getElementById('addressError');
+                var messageError = document.getElementById('messageError');
+
+                var isValid = true;
+
+                // Reset error messages
+                nameError.textContent = "";
+                contactError.textContent = "";
+                emailError.textContent = "";
+                addressError.textContent = "";
+                messageError.textContent = "";
+
+                if (name.trim() === "") {
+                    nameError.textContent = "Name is required";
+                    isValid = false;
+                }
+
+                if (isNaN(contactNo) || contactNo.trim() === "") {
+                    contactError.textContent = "Valid contact number is required";
+                    isValid = false;
+                }
+
+                if (!validateEmail(email)) {
+                    emailError.textContent = "Valid email address is required";
+                    isValid = false;
+                }
+
+                if (address.trim() === "") {
+                    addressError.textContent = "Address is required";
+                    isValid = false;
+                }
+
+                if (message.trim() === "") {
+                    messageError.textContent = "Message is required";
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function validateEmail(email) {
+                var re = /\S+@\S+\.\S+/;
+                return re.test(email);
+            }
+
+// Function to validate the form
+            function validateSignUpForm() {
+                var rollno = document.forms["signupForm"]["rollno"].value;
+                var name = document.forms["signupForm"]["name"].value;
+                var fname = document.forms["signupForm"]["fname"].value;
+                var mname = document.forms["signupForm"]["mname"].value;
+                var address = document.forms["signupForm"]["address"].value;
+                var program = document.forms["signupForm"]["program"].value;
+                var branch = document.forms["signupForm"]["branch"].value;
+                var year = document.forms["signupForm"]["year"].value;
+                var contactno = document.forms["signupForm"]["contactno"].value;
+                var email = document.forms["signupForm"]["email"].value;
+                var password = document.forms["signupForm"]["password"].value;
+                var conpassword = document.forms["signupForm"]["conpassword"].value;
+                var gender = document.forms["signupForm"]["gender"].value;
+
+                // Check if any field is empty
+                if (rollno === "" || name === "" || fname === "" || mname === "" || address === "" || program === "" || branch === "" || year === "" || contactno === "" || email === "" || password === "" || conpassword === "" || gender === "") {
+                    alert("Please fill out all required fields.");
+                    return false;
+                }
+
+                // Check if passwords match
+                if (password !== conpassword) {
+                    alert("Passwords do not match.");
+                    return false;
+                }
+
+                return true; // Form is valid, allow submission
+            }
+        </script>
     </head>
 
     <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
@@ -36,12 +128,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <h2>About Online Examination System</h2>
-                        <p>The objective to design the portal is to facilitate “E-learning System to the students for the learning purpose from a remote location". The Portal is a Secure, Robust Web Application for E-Learning.</p>
-
-                        <p>NOU-E-Gyan Portal is a Learning Management System (LMS) for the colleges/ institutions / study centers for their unstoppable teaching to their students in the current crisis situation & in future as well since we all are now experiencing a paradigm shift. The portal is user friendly & easy to access.</p>
-
-                        <p>The portal is accessible from any hook and corner of the world if the system allows the permission of its users. It is fully secured and accessible 24 x 7 to its authorised users. It will resolve the academic issues such as E-content Distribution, Delivery, Tracking, Assessment, Progress Monitoring & Controlling of all stakeholders of the portal i.e. students, teachers, study centre administrators as well as Nalanda Open University Admins when they are at a distance.</p>
+                        <h2>About Exam Portal</h2>
+                        <p>To overcome the difficulties in the existing conventional methods of distance education as mentioned in the paragraph above, Nalanda Open University has pioneered NOU Online Examination System.</p> <p>The NOU Online Examination System will not only digitalise every process of learning but focuses on easy access to the self-learning materials, online examination and self-assessment tools.</p> <p>The students of the university will experience instant communication and feedback with the concerned faculties or staff eliminating any barriers to an effective flow of information. The portal will also enable the university for a better digital experience in providing the students with their self-learning material and self-assessment tools and study centre associations.</p> <p>All the study centres associated with the university offers all the courses available in the university. This means that the self-learning material of all the 113+ courses will be available to all the students associated to any of the 250+ study centres of the university. This portal will advance and transform the course of education of the university.</p>
                     </div>
                 </div>
             </div>
@@ -89,13 +177,33 @@
                     </div>
                     <div class="col-md-6 col-lg-5 col-xl-4">
                         <div>
-                            <form class="p-3 p-xl-4" method="post" action="controllers/contactHandler.jsp">
-                                <div class="mb-3"><input class="form-control" style="input-style:none;*" type="text" id="name-1" name="name" placeholder="Name" required></div>
-                                <div class="mb-3"><input class="form-control" type="number" id="contactno-1" name="contactno" placeholder="Contact No." required></div>
-                                <div class="mb-3"><input class="form-control" type="email" id="email-1" name="email" placeholder="Email" required></div>
-                                <div class="mb-3"><input class="form-control" type="text" id="subject-1" name="address" placeholder="Address" required></div>
-                                <div class="mb-3"><textarea class="form-control" id="message-1" name="message" rows="3" placeholder="Message" required></textarea></div>
-                                <div><button class="btn btn-primary d-block w-100 rounded-2" type="submit">Send </button></div>
+                            <form class="p-3 p-xl-4" method="post" action="controllers/contactHandler.jsp" onsubmit="return validateContactForm()">
+                                <div class="mb-3">
+                                    <input class="form-control" style="input-style:none;*" type="text" id="name-1" name="name"
+                                           placeholder="Name">
+                                    <span id="nameError" class="error"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="tel" id="contactno-1" name="contactno" placeholder="Contact No."
+                                           >
+                                    <span id="contactError" class="error"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="email" id="email-1" name="email" placeholder="Email">
+                                    <span id="emailError" class="error"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" type="text" id="subject-1" name="address" placeholder="Address">
+                                    <span id="addressError" class="error"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="message-1" name="message" rows="3" placeholder="Message"
+                                              ></textarea>
+                                    <span id="messageError" class="error"></span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary d-block w-100 rounded-2" type="submit">Send</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -107,7 +215,6 @@
         <script src="assets/js/script.min.js"></script>
         <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
-
         <script src="assets/js/script.js"></script>
     </body>
 </html>

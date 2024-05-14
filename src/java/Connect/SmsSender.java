@@ -1,6 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package Connect;
 import java.net.*;
 import java.io.*;
+
+/**
+ *
+ * @author dell pc
+ */
 public class SmsSender 
 {
  public static String user,key,message,senderid,accusage,entityid,tempid,retval="";
@@ -31,22 +42,22 @@ public class SmsSender
   URL url=new URL(smsurl);
   URLConnection con=url.openConnection();
   con.setDoOutput(true);
-  BufferedReader rd;
-         try ( //Push the Message
-                 OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream())) {
-             wr.write(data);
-             wr.flush();
-             //Get the response
-             rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
-             String line;
-             while((line=rd.readLine())!=null)
-             {
-                 retval+=line;
-             }      }
+  //Push the Message
+  OutputStreamWriter wr=new OutputStreamWriter(con.getOutputStream());
+  wr.write(data);
+  wr.flush();
+  //Get the response
+  BufferedReader rd=new BufferedReader(new InputStreamReader(con.getInputStream()));
+  String line;
+  while((line=rd.readLine())!=null)
+  {
+      retval+=line;
+  }
+  wr.close();
   rd.close();
   return true;
      }
-     catch(IOException ex)
+     catch(Exception ex)
      {
          return false;
      }
