@@ -91,8 +91,7 @@
                     <div class="pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">All Questions</h1>
                     </div>
-                    <div class="col-sm-12" style="min-height:600px;background-color:pink;">
-                        <h2 style="text-align:center;color:blue;">View Questions</h2>
+                    <div class="col-sm-12" style="min-height:600px;">
                         <table class="table table-bordered">
                             <tr>
                                 <th>Id</th>

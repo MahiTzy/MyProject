@@ -19,7 +19,8 @@
                 String updateQuery = "update login set password='" + newpass + "' where userid='" + userid + "'";
                 boolean updateResult = ctx.insertUpdateDelete(updateQuery);
                 if (updateResult) {
-                    out.print("<script>alert('Password updated successfully');window.location.href='shome.jsp';</script>");
+                    session.invalidate();
+                    out.print("<script>alert('Password updated successfully');window.location.href='../index.jsp';</script>");
                 } else {
                     out.print("<script>alert('Failed to update password');window.location.href='shome.jsp';</script>");
                 }
