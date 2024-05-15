@@ -15,7 +15,7 @@ public class DbManager {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/oesdb2?characterEncoding=utf-8","root","");
+            con=DriverManager.getConnection("jdbc:mysql://db:3306/oesdb?characterEncoding=utf-8","root","root");
         }
         catch(ClassNotFoundException e1)
         {
