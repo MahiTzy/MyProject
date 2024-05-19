@@ -1,5 +1,4 @@
 package dbpack;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,15 +14,11 @@ public class DbManager {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://db:3306/oesdb?characterEncoding=utf-8","root","root");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
         }
-        catch(ClassNotFoundException e1)
+        catch(ClassNotFoundException | SQLException e1)
         {
             e1.printStackTrace();
-        }
-        catch(SQLException e2)
-        {
-            e2.printStackTrace();
         }
     }
     public boolean insertUpdateDelete(String query)
@@ -31,14 +26,7 @@ public class DbManager {
         try
         {
             ps=con.prepareStatement(query);
-            if(ps.executeUpdate()>0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return ps.executeUpdate()>0;
         }
         catch(SQLException e)
         {

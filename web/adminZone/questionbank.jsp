@@ -28,7 +28,6 @@
         <div class="container-fluid">
             <div class="row">
                 <nav id="sidebarMenu" class="border-end col-md-2 col-lg-2 d-md-block navbar-dark sidebar collapse">
-
                     <div class="position-sticky pt-3" id="side">
                         <div class="d-flex flex-column align-items-center">
                             <img src="../assets/img/logo.png" style="width: 150px;"/>
@@ -158,9 +157,9 @@
                     </form>
                 </main>
             </div>
-        </main>
+        </div>
         <%@include file="includes/aFooter.jsp" %>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    </body>
 </html>
 <% }%>
